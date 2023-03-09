@@ -6,6 +6,8 @@ import 'package:myshoesapp/pages/login_page.dart';
 
 class AuthService {
   GoogleSignIn googleSignIn = GoogleSignIn();
+  final _auth = FirebaseAuth.instance;
+  var verificationId = '';
 
   //1. handleAuthState()
   handleAuthState() {
@@ -13,9 +15,10 @@ class AuthService {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return const HomePage();
+            return HomePage();
+            // Navigator.pushAndRemoveUntil(context, "home", (route) => false);
           } else {
-            return const LoginPage();
+            return LoginPage();
           }
         });
   }
@@ -41,5 +44,34 @@ class AuthService {
     await googleSignIn.signOut();
     // Navigator.pop(context);
     // return LoginPage();
+  }
+
+  //phone authentication
+  Future<void> phoneAuthentication(String phoneNo) async {
+    await _auth.verifyPhoneNumber(
+        phoneNumber: phoneNo,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await _auth.signInWithCredential(credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          if (e.code == 'invalid-phone-number') {
+            print("The provided phone number is not valid.");
+          } else {
+            print("Something went wrong! Try Again.");
+          }
+        },
+        codeSent: (String verificationId, int? resendTOken) {
+          this.verificationId = verificationId;
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          this.verificationId = verificationId;
+        });
+  }
+
+  Future<bool> verifyOTP(String otp) async {
+    var credential = await _auth.signInWithCredential(
+        PhoneAuthProvider.credential(
+            verificationId: verificationId, smsCode: otp));
+    return credential.user != null ? true : false;
   }
 }

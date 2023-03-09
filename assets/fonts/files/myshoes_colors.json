@@ -1,0 +1,16 @@
+{
+    "colors" : [
+        {
+            "id":  1,
+            "imageURL" : "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/585e2cd2-4f2a-408c-a8ba-f89952cdf332/revolution-6-next-nature-road-running-shoes-NC0P7k.png"
+        },
+        {
+            "id":  2,
+            "imageURL" : "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/fef65a57-ff50-41a2-8e68-aa88cb4c5628/revolution-6-next-nature-road-running-shoes-NC0P7k.png"
+        },
+        {
+            "id":  3,
+            "imageURL" : "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/17a0394b-ddc0-4b7f-ad15-3eb6eb957444/revolution-6-next-nature-road-running-shoes-NC0P7k.png"
+        }
+    ]
+}

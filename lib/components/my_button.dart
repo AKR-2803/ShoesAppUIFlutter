@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:myshoesapp/utils/utils.dart';
 
 class MyButton extends StatelessWidget {
-  final Color myColor = Colors.black;
-  const MyButton({super.key, required Color myColor});
+  final Color myColor = const Color.fromRGBO(242, 102, 62, 1);
+  final String buttonName = 'Sign In';
+  Function()? onPressedFunction = () {};
+  MyButton(
+      {super.key,
+      required Color myColor,
+      required String buttonName,
+      required Function()? onPressedFunction,
+      TextInputType? textInputType});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: Container(
-        height: 70,
-        width: double.infinity,
-        alignment: Alignment.center,
-        decoration: myButtonDecoration(),
-        child: const Text(
-          "Sign In",
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+      child: InkWell(
+        onTap: onPressedFunction,
+        child: Container(
+          height: 70,
+          width: double.infinity,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: myColor,
+            // color: myColor,
+          ),
+          child: Text(
+            buttonName,
+            style: const TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.w900),
+          ),
         ),
       ),
     );

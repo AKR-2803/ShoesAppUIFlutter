@@ -1,0 +1,15 @@
+{
+    "colorImages": [
+                    {"imagePath" : "assets/images/coloroptions/color1_1.png"},
+                    {"imagePath" : "assets/images/coloroptions/color1_2.png"},
+                    {"imagePath" : "assets/images/coloroptions/color1_3.png"},
+                    {"imagePath" : "assets/images/coloroptions/color1_4.png"},
+                    {"imagePath" : "assets/images/coloroptions/color1_5.png"},
+                    {"imagePath" : "assets/images/coloroptions/color2_1.png"},
+                    {"imagePath" : "assets/images/coloroptions/color2_2.png"},
+                    {"imagePath" : "assets/images/coloroptions/color2_3.png"},
+                    {"imagePath" : "assets/images/coloroptions/color2_4.png"},
+                    {"imagePath" : "assets/images/coloroptions/color2_5.png"}
+                            
+                   ]
+}

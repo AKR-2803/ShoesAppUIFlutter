@@ -1,3 +1,5 @@
+import 'dart:async';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myshoesapp/auth_service.dart';
 import 'package:myshoesapp/components/my_button.dart';
@@ -5,6 +7,9 @@ import '../components/my_textfield.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
+
+// import 'home_page.dart';
+// import 'package:myshoesapp/phone_getter_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,7 +19,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Colors myOrange = Color.fromRGBO(242, 102, 62, 1),;
+  Color myOrange = const Color.fromRGBO(242, 102, 62, 1);
   final usernameController = TextEditingController();
 
   final passwordController = TextEditingController();
@@ -62,10 +67,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              const Text(
+              Text(
                 "Welcome back! You've been missed",
-                style: TextStyle(
-                    color: Color.fromRGBO(242, 102, 62, 1), fontSize: 18),
+                style: TextStyle(color: myOrange, fontSize: 18),
               ),
               const SizedBox(
                 height: 25,
@@ -73,20 +77,29 @@ class _LoginPageState extends State<LoginPage> {
 
               //textfields
 
-              MyTextField(
-                myController: usernameController,
-                myLabelText: 'Username',
-                isObscureText: false,
-              ),
-
-              const SizedBox(
-                height: 20,
-              ),
-
-              MyTextField(
-                myController: passwordController,
-                myLabelText: 'Password',
-                isObscureText: true,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Column(
+                  children: [
+                    MyTextField(
+                      myController: usernameController,
+                      myLabelText: 'Username',
+                      isObscureText: false,
+                      wantEnabledBorder: true,
+                      wantFocusedBorder: true,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    MyTextField(
+                      myController: passwordController,
+                      myLabelText: 'Password',
+                      isObscureText: true,
+                      wantEnabledBorder: true,
+                      wantFocusedBorder: true,
+                    ),
+                  ],
+                ),
               ),
 
               //forgotpassword
@@ -117,8 +130,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               //signin btn
-              const MyButton(
-                myColor: Color.fromRGBO(242, 102, 62, 1),
+              MyButton(
+                myColor: myOrange,
+                buttonName: 'Sign In',
+                onPressedFunction: () {},
               ),
 
               const SizedBox(
@@ -151,11 +166,44 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  //google button
                   GestureDetector(
-                    onTap: () {
-                      setState(() {
+                    onTap: () async {
+                      await AuthService().signInWithGoogle();
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            backgroundColor: Colors.transparent,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CircularProgressIndicator(
+                                    color: myOrange,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Authenticating",
+                                    style: TextStyle(
+                                      backgroundColor: Colors.transparent,
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                ]),
+                          );
+                        },
+                      );
+                      Future.delayed(Duration(seconds: 2), () {
+                        if (mounted) {
+                          return Navigator.pushNamedAndRemoveUntil(
+                              context, 'home', (route) => false);
+                        }
                       });
-                      AuthService().signInWithGoogle();
                     },
                     child: Container(
                         height: 75,
@@ -172,24 +220,27 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.white70,
                         )),
                   ),
-                  Container(
-                      height: 75,
-                      width: 75,
-                      // padding: const EdgeInsets.all(20.0),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          borderRadius: BorderRadius.circular(16),
-                          color: Colors.grey.shade800),
-                      child: const FaIcon(
-                        FontAwesomeIcons.twitter,
-                        size: 50,
-                        color: Colors.white70,
-                      ))
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "phone");
+                    },
+                    child: Container(
+                        height: 75,
+                        width: 75,
+                        // padding: const EdgeInsets.all(20.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 1),
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.grey.shade800),
+                        child: const FaIcon(
+                          FontAwesomeIcons.phone,
+                          size: 50,
+                          color: Colors.white70,
+                        )),
+                  )
                 ],
               ),
-
-              //sign in using google or apple logos
 
               //not a member? Register Now(use textbutton)
             ],

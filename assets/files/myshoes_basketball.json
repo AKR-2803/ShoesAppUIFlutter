@@ -1,0 +1,37 @@
+{
+    "shoes": [
+        {
+            "id" : 1,
+            "desc" : "Air Zoom",
+            "price": 899.99,
+            "imgPath": "assets/images/shoe_5.png"
+        },
+        {
+            "id" : 2,
+            "desc" : "Downshifter",
+            "price": 5499.99,
+            "imgPath": "assets/images/shoe_4.png"
+        },
+        {
+            "id" : 3,
+            "desc" : "Air Max",
+            "price": 7779.99,
+            "imgPath": "assets/images/shoe_1.png"
+        },
+        {
+            "id" : 4,
+            "desc" : "Creter Impact",
+            "price": 999.99,
+            "imgPath": "assets/images/shoe_2.png"
+        },
+
+        {
+            "id" : 5,
+            "desc" : "Nike Tempo",
+            "price": 2999.99,
+            "imgPath": "assets/images/shoe_3.png"
+        }
+
+
+    ]
+}

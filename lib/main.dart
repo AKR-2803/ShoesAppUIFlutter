@@ -1,24 +1,63 @@
-//Thi is 
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:myshoesapp/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:myshoesapp/auth_service.dart';
+import 'package:myshoesapp/pages/home_page.dart';
+import 'package:myshoesapp/pages/login_page.dart';
+import 'package:myshoesapp/pages/phone_getter_page.dart';
+import 'package:myshoesapp/pages/phone_otp.dart';
+import 'package:provider/provider.dart';
+import 'package:myshoesapp/providers/counter_provider.dart';
+// import 'package:myshoesapp/ui_helper/helper_functions.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:myshoesapp/widgets/drawer.dart';
+// import 'package:myshoesapp/widgets/GridViewShoes.dart';
+// import 'package:myshoesapp/widgets/MiddleListView.dart';
+// import 'package:myshoesapp/widgets/MyCustomBottomAppBar.dart';
+// import 'package:myshoesapp/widgets/MyCustomFloatingActionButton.dart';
+// import 'package:myshoesapp/widgets/UpperContainer.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => Counter())],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: AuthService().handleAuthState(),
+      theme: ThemeData(fontFamily: 'Questrial'),
+      // initialRoute: _auth.currentUser == null ? '/login' : '/home',
+      // routes: {
+      //   '/login': (context) => LoginPage(),
+      //   '/home': (context) => HomePage(),
+      //   // '/phone': (context) => PhoneGetterPage(),
+      //   // '/otp': (context) => PhoneOTP(),
+      // },
+      // home: AuthService().handleAuthState(),
+      home: LoginPage(),
     );
   }
 }
@@ -26,58 +65,38 @@ class MyApp extends StatelessWidget {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:myshoesapp/widget/home_page.dart';
-// import 'package:myshoesapp/widget/login_widget.dart';
 
-// Future main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(MaterialApp(home: MainPage()));
+// void main() {
+//   runApp(MaterialApp(home: MyApp()));
 // }
 
-// class MainPage extends StatelessWidget {
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       body: StreamBuilder<User?>(
-//           stream: FirebaseAuth.instance.authStateChanges(),
-//           builder: (context, snapshot) {
-//             if (snapshot.hasData) {
-//               print(snapshot.toString());
-//               return HomePage();
-//             } else if (!snapshot.hasData) {
-//               print("............data: ${snapshot.data}");
-//               return CircularProgressIndicator();
-//             } else {
-//               print(snapshot.toString());
-//               return LoginWidget();
-//             }
-//           }),
+//       appBar: AppBar(
+//         title: const Text('DraggableScrollableSheet'),
+//       ),
+//       body: SizedBox.expand(
+//         child: DraggableScrollableSheet(
+//           builder: (BuildContext context, ScrollController scrollController) {
+//             return Container(
+//               color: Colors.blue[100],
+//               child: ListView.builder(
+//                 controller: scrollController,
+//                 itemCount: 25,
+//                 itemBuilder: (BuildContext context, int index) {
+//                   return ListTile(title: Text('Item $index'));
+//                 },
+//               ),
+//             );
+//           },
+//         ),
+//       ),
 //     );
 //   }
 // }

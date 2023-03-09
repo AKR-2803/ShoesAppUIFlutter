@@ -1,0 +1,30 @@
+{
+    "products" : [
+
+        {
+            "id" : 1,
+            "name" : "Lifestyle",
+            "imageURL" : "https://as1.ftcdn.net/v2/jpg/01/43/45/78/1000_F_143457845_tdR3QY1Q5Shd3y0SIn6F0hzRLNjETnlC.jpg"
+        },
+        {
+            "id" : 2,
+            "name" : "Basketball",
+            "imageURL" : "https://images.unsplash.com/photo-1605348532760-6753d2c43329?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YmFza2V0YmFsbCUyMHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+        },
+        {
+            "id" : 3,
+            "name" : "Running",
+            "imageURL" : "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHJ1bm5pbmclMjBzaG9lc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+        },
+        {
+            "id" : 4,
+            "name" : "Football",
+            "imageURL" : "https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG5pa2UlMjBzdHVkc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+        },
+        {
+            "id" : 5,
+            "name" : "Women",
+            "imageURL" : "https://images.unsplash.com/photo-1575537302964-96cd47c06b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tZW4lMjBzaG9lcyUyMG5pa2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+        }
+    ]
+}
