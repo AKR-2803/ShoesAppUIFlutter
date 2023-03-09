@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
       //   // '/otp': (context) => PhoneOTP(),
       // },
       // home: AuthService().handleAuthState(),
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
