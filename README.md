@@ -1,6 +1,9 @@
 # myshoesapp
 
-A shoes app UI using Flutter and Firebase. [This project is still under development]
+- A shoes app UI using Flutter 
+- Sign in/Sign out using Firebase :
+  - Google account 
+  - Phone authentication
 
 ## The App
 
@@ -23,12 +26,12 @@ ____
 ____
 
 
-### Home Page
+### Home Page [design](https://dribbble.com/shots/17480773-NWS-Mobile-App-Exploration)
 <kbd><img src="https://user-images.githubusercontent.com/109909231/224124850-62015ed7-3365-4b0a-aeea-82f06e0ddad3.png" width="250" height="550"></kbd> 
 ____
 
 
-### Shoe Details Page
+### Shoe Details Page [design](https://dribbble.com/shots/17480773-NWS-Mobile-App-Exploration)
 
 - Names of the products are different as they were passed dynamically.
 
